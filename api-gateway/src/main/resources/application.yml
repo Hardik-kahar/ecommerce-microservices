@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: product-service
+              uri: lb://PRODUCT-SERVICE
+              predicates:
+                - Path=/products/**
+            - id: order-service
+              uri: lb://ORDER-SERVICE
+              predicates:
+                - Path=/order/**
+            - id: payment-service
+              uri: lb://PAYMENT-SERVICE
+              predicates:
+                - Path=/payment/**
+

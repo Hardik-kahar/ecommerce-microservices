@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("order")
 public class OrderController {
 
-    @GetMapping()
+    @GetMapping
     public String getOrders() {
-        return "List of Orders";
+        return "order service running.........;";
     }
 }
