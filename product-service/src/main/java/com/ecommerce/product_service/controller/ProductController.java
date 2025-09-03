@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("product")
 public class ProductController {
 
     private final WebClient.Builder webClientBuilder;
@@ -16,18 +16,18 @@ public class ProductController {
         this.webClientBuilder = webClientBuilder;
     }
 
-    @GetMapping("/status")
+    @GetMapping
     public String getStatus() {
         return "Product service running...............";
     }
 
-    @GetMapping
+    @GetMapping("/order-data")
     @CircuitBreaker(name = "orderService", fallbackMethod = "orderFallback")
     public String getProducts() {
-        // Calling Order-Service
+        // Calling Order-Service via Eureka
         String orderResponse = webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8083/order")
+                .uri("http://ORDER-SERVICE/order")
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
@@ -36,8 +36,8 @@ public class ProductController {
     }
 
     // fallback method
-    public String orderFallback(Exception e) {
-        return "Product Service running... | Order Service is down! Showing fallback response.";
+    public String orderFallback(Throwable e) {
+        return "Product Service running... | Order Service is down! Fallback activated.";
     }
 
 }

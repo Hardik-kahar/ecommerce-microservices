@@ -1,4 +1,4 @@
-package com.ecommerce.product_service.controller.config;
+package com.ecommerce.product_service.config;
 
 
 import org.springframework.context.annotation.Bean;

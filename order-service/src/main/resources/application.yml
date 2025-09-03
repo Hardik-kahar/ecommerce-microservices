@@ -1,0 +1,26 @@
+resilience4j:
+  circuitbreaker:
+    instances:
+      productService:
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 2
+        slidingWindowSize: 5
+  retry:
+    instances:
+      productService:
+        maxAttempts: 3
+        waitDuration: 2s
+  ratelimiter:
+    instances:
+      productService:
+        limitForPeriod: 5
+        limitRefreshPeriod: 10s
+  bulkhead:
+    instances:
+      productService:
+        maxConcurrentCalls: 5
+  timelimiter:
+    instances:
+      productService:
+        timeoutDuration: 2s
