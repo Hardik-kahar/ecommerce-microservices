@@ -9,7 +9,7 @@ public class ProductClient {
     private final WebClient webClient;
 
     public ProductClient(WebClient.Builder builder) {
-        this.webClient = builder.baseUrl("http://PRODUCT-SERVICE").build();
+        this.webClient = builder.baseUrl("http://localhost:8080").build();
     }
 
     public String getProducts() {

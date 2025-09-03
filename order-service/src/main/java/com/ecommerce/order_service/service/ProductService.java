@@ -19,7 +19,7 @@ public class ProductService {
         this.productClient = productClient;
     }
 
-    @CircuitBreaker(name = "productService", fallbackMethod = "fallbackProducts")
+//    @CircuitBreaker(name = "productService", fallbackMethod = "fallbackProducts")
     public String fetchProducts() {
         return productClient.getProducts();
     }

@@ -22,6 +22,11 @@ public class OrderController {
         return "order service running.........;";
     }
 
+    @GetMapping("/product")
+    public String products1() {
+        return productService.fetchProducts();
+    }
+
     @GetMapping("/product/cb")
     public String productsCircuitBreaker() {
         return productService.fetchProducts();

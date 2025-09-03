@@ -21,6 +21,12 @@ public class ProductController {
         return "Product service running...............";
     }
 
+    @GetMapping("/data")
+//    @CircuitBreaker(name = "orderService", fallbackMethod = "orderFallback")
+    public String getProductsData() {
+        return "getProductsData running...............";
+    }
+
     @GetMapping("/order-data")
     @CircuitBreaker(name = "orderService", fallbackMethod = "orderFallback")
     public String getProducts() {
